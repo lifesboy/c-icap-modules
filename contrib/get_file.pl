@@ -12,6 +12,7 @@ if($ENV{'REQUEST_METHOD'} eq "GET") {
        if($key eq "file" || $key eq "usename" || $key eq "content" ||$key eq "remove"  ){
 	   $args{$key}=$val;
        }
+
    }
 
 
@@ -23,7 +24,7 @@ else{
 }
 
 
-$filename="/srv/www/htdocs/downloads/".\"$args{"file"};\"
+$filename="/srv/www/htdocs/downloads/".$args{"file"};
 my(@stat)=stat $filename;
 binmode(STDOUT);
 if(open (F,"<$filename")){
@@ -37,10 +38,10 @@ if(open (F,"<$filename")){
 
     print "Content-Length: ".$stat[7]."\n";
     if($args{"usename"}){
-	print "Content-Disposition: attachment; filename=\"".$args{"usename"}."\"\n\n";
+	print "Content-Disposition: attachment; filename=".$args{"usename"}."\n\n";
     }
     else {
-	print "Content-Disposition: attachment; filename=\"".$args{"file"}."\"\n\n";
+	print "Content-Disposition: attachment; filename=".$args{"file"}."\n\n";
     }
 
     while($len=sysread( F, $buf,512)){

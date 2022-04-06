@@ -29,10 +29,6 @@
 #include <sys/types.h>
 #endif
 
-#ifdef HAVE_CTYPE_H
-#include <ctype.h>
-#endif
-
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -51,6 +47,18 @@
 
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
+#endif
+
+#ifdef HAVE_LIMITS_H
+#include <limits.h>
+#endif
+
+#ifndef HAVE_STRNSTR
+#define strnstr(s, find, slen) ci_strnstr(s, find, slen)
+#endif
+
+#ifndef HAVE_STRNCASESTR
+#define strncasestr(s, find, slen) ci_strncasestr(s, find, slen)
 #endif
 
 #ifndef HAVE_STRCASESTR
