@@ -12,7 +12,7 @@
 #include <errno.h>
 
 /**********************************/
-/*    Clamd support                            */
+/*    Suricatad support                            */
 #ifdef HAVE_FD_PASSING
 char *CLAMD_SOCKET_PATH = "/var/run/clamav/clamd.ctl";
 #endif
@@ -25,10 +25,10 @@ char CLAMD_ADDR[CI_MAX_PATH];
 
 static struct ci_conf_entry clamd_conf_variables[] = {
 #ifdef HAVE_FD_PASSING
-    {"ClamdSocket", &CLAMD_SOCKET_PATH, ci_cfg_set_str, NULL},
+    {"SuricatadSocket", &CLAMD_SOCKET_PATH, ci_cfg_set_str, NULL},
 #endif
-    {"ClamdHost", &CLAMD_HOST, ci_cfg_set_str, NULL},
-    {"ClamdPort", &CLAMD_PORT, ci_cfg_set_int, NULL},
+    {"SuricatadHost", &CLAMD_HOST, ci_cfg_set_str, NULL},
+    {"SuricatadPort", &CLAMD_PORT, ci_cfg_set_int, NULL},
     {NULL, NULL, NULL, NULL}
 };
 
@@ -268,7 +268,7 @@ int clamd_post_init(struct ci_server_conf *server_conf)
         strncpy(CLAMD_ADDR, CLAMD_SOCKET_PATH, sizeof(CLAMD_ADDR));
         CLAMD_ADDR[sizeof(CLAMD_ADDR) - 1] = '\0';
 #else
-        ci_debug_printf(1, "clamd_init: Clamd TCP port is not defined and requored\n");
+        ci_debug_printf(1, "clamd_init: Suricatad TCP port is not defined and requored\n");
         return CI_ERROR;
 #endif
     }
