@@ -12,7 +12,7 @@
 #include <errno.h>
 
 /**********************************/
-/*    Suricatad support phien ban 1                           */
+/*    Suricatad support phien ban 14/4/2022                           */
 #ifdef HAVE_FD_PASSING
 char *CLAMD_SOCKET_PATH = "/var/run/clamav/clamd.ctl";
 #endif
